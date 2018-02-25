@@ -245,3 +245,79 @@ func find(array : Array<Int>, compare : Int) -> Array<Int> {
     return resultArr
 }
 find(array: arr, compare: compareNum)
+
+
+
+// ### 构造函数
+/** 构造函数的介绍
+    构造函数类似于OC中的初始化方法:init方法
+    默认情况下载创建一个类时,必然会调用一个构造函数
+    即便是没有编写任何构造函数，编译器也会提供一个默认的构造函数
+    如果是继承自NSObject,可以对父类的构造函数进行重写
+ */
+class Person: NSObject {
+    var name : String?
+    var age : Int = 0
+    
+    init(dict : [String : AnyObject]) {
+        let substituteName = dict["name"]
+        // substituteName是一个AnyObject?,需要转成String?
+        // as? 最终转成的类型是一个可选类型
+        // as! 最终转成的类型是一个确定的类型
+        self.name = substituteName as? String
+
+        /**
+            let substituteAge = dict["age"]
+            let dualSubstituteAge = substituteAge as? Int
+            if dualSubstituteAge != nil {
+                age = dualSubstituteAge!
+            }
+         */
+        // 可选绑定
+        if let tempAge = dict["age"] as? Int {
+            age = tempAge
+        }
+    }
+    
+//    init(dict : [String : AnyObject]) {
+//        super.init()
+//        setValuesForKeys(dict)
+//    }
+//
+//    override func setValue(  value: Any?, forUndefinedKey key: String) {
+//    }
+}
+
+let p = Person(dict: ["name" : "xph" as AnyObject, "age" : 18 as AnyObject])
+print(p.age)
+if p.name != nil {
+    print(p.name!)
+}
+
+
+
+// ### 属性监听器
+class Car : NSObject {
+    // 属性监听器
+    var brand : String? {
+        // 属性即将改变时监听
+        willSet {
+            print(brand as Any)
+            print(newValue as Any)
+        }
+        // 属性已经改变时监听
+        didSet {
+            print(brand as Any)
+            print(oldValue as Any)
+        }
+    }
+}
+let c = Car()
+c.brand = "BWM"
+
+
+
+// ### 注释
+// MARK:- <#注释>          分组注释
+// ///<#注释>              提示注释
+
