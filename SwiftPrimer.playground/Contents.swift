@@ -149,7 +149,12 @@ if name != nil {
     print(name!)
 }
 
-// 5.可选绑定 (第一步操作:判断name是否有值,第二步操作:如果name有值,系统会自动将name进行解包,并且将解包后的结果直接赋值给bindName)
+// 5.可选绑定
+//(
+// 第一步操作:判断name是否有值,如果没有值就不执行大括号
+// 第二步操作:如果name有值,系统会自动将name进行解包,并且将解包后的结果直接赋值给bindName
+//)
+
 // 写法一(不常用):
 //if let bindName = name {
 //    print(bindName)
@@ -200,7 +205,7 @@ func4(num: &num)
 
 
 // ## 3.无参有返回值 (无参单返,无参多返)
-func func5() ->String{
+func func5() ->  String{
     return "无参单返"
 }
 func5()
@@ -315,6 +320,69 @@ class Car : NSObject {
 let c = Car()
 c.brand = "BWM"
 
+
+
+// ### 闭包
+//  定义闭包
+//  类型 : (形参) -> (返回值)
+
+//  闭包执行回调
+//  类型(值)
+
+//  闭包实现回调
+//  {
+//      (形参) -> (返回值) in
+//      // 执行代码
+//  }
+
+//### WJKHttpTool.swift
+//
+//import Foundation
+//
+//class WJKHttpTool : NSObject {
+//    // MARK:定义闭包
+//    func loadData(completion : (_ result : Bool) -> ()) -> () {
+//        // MARK:闭包执行回调
+//        completion(true)
+//    }
+//}
+
+//### WJKViewController.swift
+//
+//import UIKit
+//
+//class ViewController: UIViewController {
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        let httpTool : WJKHttpTool = WJKHttpTool()
+//
+//        // MARK:闭包实现回调
+//        // MARK: - 完整写法
+//        httpTool.loadData (completion: { (result) -> () in
+//            print(result)
+//        })
+//        // MARK: - 完整写法
+//        httpTool.loadData (completion: { (result) -> () in
+//            print(result)
+//        })
+//
+//        // MARK: - 省略写法
+//        httpTool.loadData (completion: { (result) in
+//            print(result)
+//        })
+//
+//        // MARK: - 尾随闭包写法
+//        httpTool.loadData() { (result) in
+//            print(result)
+//        }
+//
+//        // MARK: - 尾随闭包推荐写法
+//        httpTool.loadData { (result) in
+//            print(result)
+//        }
+//}
 
 
 // ### 注释
