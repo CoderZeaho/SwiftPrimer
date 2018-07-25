@@ -322,6 +322,22 @@ c.brand = "BWM"
 
 
 
+// ### 泛型
+// 泛型让我们写出灵活且可重用的函数和类型
+func swapTwoValues<T>(_ a : inout T, _ b : inout T) {
+    let  temporaryA = a
+    a = b
+    b = temporaryA
+}
+
+var num1 = 100
+var num2 = 200
+print("交换前的数据:\(num1)和\(num2)")
+swap(&num1, &num2)
+print("交换后的数据:\(num1)和\(num2)")
+
+
+
 // ### 闭包
 //  定义闭包
 //  类型 : (形参) -> (返回值)
@@ -388,4 +404,3 @@ c.brand = "BWM"
 // ### 注释
 // MARK:- <#注释>          分组注释
 // ///<#注释>              提示注释
-
