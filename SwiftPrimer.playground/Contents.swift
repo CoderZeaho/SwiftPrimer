@@ -108,9 +108,8 @@ array2[0]
 
 
 
-
 // ### 字典
-// 定时字典的同时,进行初始化
+// 定义字典的同时,进行初始化
 var dictionary1 = ["name" : "xph", "age" : 18] as [String : Any]
 // Swift中任意对象,通常不使用NSObject,使用AnyObject
 var dictionary2 : Dictionary<String, AnyObject> // 或者 var dictionary2 : [String: AnyObject]
@@ -123,6 +122,11 @@ dictionary2["name"]
 let info = (name : "xph", age : 18) // let info = ("xph", 18)
 info.0
 info.name
+
+// 把一个元祖的内容分解成单独的常量和变量
+let time = (year : "2016", month : 5, day : 4)
+let (year, month, day) = time
+print("\(year)年\(month)月\(day)日")
 
 
 
@@ -237,6 +241,29 @@ func more (numbers : Int...) -> Int {
 }
 more(numbers: 1,8,4,6,5,2)
 
+
+// ## 5.函数类型
+func forward(_ input: Int) -> Int {
+    return input + 1;
+}
+
+func backward(_ input: Int) -> Int {
+    return input - 1;
+}
+
+// 作为返回值类型使用
+func chooseStep(step: Bool) -> (Int) -> Int {
+    return step ? backward : forward
+}
+
+var stepResult: (Int) -> Int = chooseStep(step: true)
+// 作为参数类型使用
+func printStepResult(stepResult: (Int) -> Int, a: Int) {
+    print("result : \(stepResult(a))")
+}
+printStepResult(stepResult: stepResult, a: 10)
+
+
 // 例:找出多个数中大于二十的数
 let compareNum = 20
 let arr = [11, 24, 31, 15, 26]
@@ -318,7 +345,7 @@ class Car : NSObject {
     }
 }
 let c = Car()
-c.brand = "BWM"
+c.brand = "BMW"
 
 
 
