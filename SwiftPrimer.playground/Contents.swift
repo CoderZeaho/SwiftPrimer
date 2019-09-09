@@ -428,6 +428,42 @@ print("交换后的数据:\(num1)和\(num2)")
 //}
 
 
+
 // ### 注释
 // MARK:- <#注释>          分组注释
 // ///<#注释>              提示注释
+
+
+// ### 枚举
+// Swift中的枚举比OC中的枚举强大,因为Swift中的枚举是一等类型,可以像类和结构体一样增加属性和方法
+// 实例方法
+enum StudentScore {
+    case math
+    case chinese
+    case english
+    func sum(num1: Int, num2: Int) -> Int {
+        return num1 + num2
+    }
+}
+var student = StudentScore.math
+print(student.sum(num1: 10, num2: 20))
+
+// ## 原始值 : 枚举项提供一个默认值,这个默认值是在编译的时候就确定了的
+enum Method: String {
+    case Add = "add", Sub = "sub", Mul = "mul", Div = "div"
+}
+// 枚举值转换为原始值
+Method.Add.rawValue
+// 通过原始值创建枚举值
+let method = Method(rawValue: "add")
+
+
+// ## 相关值 : 每一个枚举项都有一个附加信息，,来扩充这个枚举项的信息表示
+enum Shape {
+    case Rectangle(CGRect)
+    case Circle(CGPoint,Int)
+}
+var rect = Shape.Rectangle(CGRect(x: 0, y: 0, width: 100, height: 100))
+var circle = Shape.Circle(CGPoint(x: 10, y: 10), 5)
+
+
